@@ -25,8 +25,8 @@
             <script type="text/javascript">
                 $("#form").alpaca({
                     "data":{
-                        "name": "",
-                        "author": ""
+                        "name": "Título",
+                        "subtitle": "Subtítulo"
                     },
                     "options":{
                         "form": {
@@ -47,8 +47,7 @@
                         }                       
                     },
                     "schema": {
-                        "title": "Metadata",
-                        "description": "Metadata for bibliographic records",
+                        "title": "Dados da obra",
                         "type": "object",
                         "properties": {
                             "name": {
@@ -62,6 +61,7 @@
                                 "required": false
                             },
                             "author": {
+                                "title": "Autores",
                                 "type": "array",
                                 "items": {
                                     "title": "Autor",
