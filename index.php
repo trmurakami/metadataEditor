@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt_BR">
     <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
@@ -25,6 +25,7 @@
 
             <div id="form"></div>
             <script type="text/javascript">
+                Alpaca.setDefaultLocale("pt_BR");
 
                 $("#form").alpaca({
                     "dataSource": "./data.json",
