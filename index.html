@@ -18,61 +18,27 @@
 
 
         <title>Editor de registros</title>
-  </head>
-  <body>
+    </head>
+    <body>
         <div class="container">
             <h1>Editor</h1>
 
+            <div id="form"></div>
+            <script type="text/javascript">
 
-    
+                $("#form").alpaca({
+                    "dataSource": "./data.json",
+                    "optionsSource": "./options.json",
+                    "schemaSource": "./schema.json"
+                });
 
-        <div id="form"></div>
-        <script type="text/javascript">
-            $("#form").alpaca({
-                "data": {
-                    "name": ""
-                },
-                "schema": {
-                    "title": "Editor",
-                    "description": "",
-                    "type": "object",
-                    "properties": {
-                        "name": {
-                            "type": "string",
-                            "title": "Título",
-                            "required": true
-                        }
-                    }
-                },
-                "options": {
-                    "form": {
-                        "attributes": {
-                            "action": "http://httpbin.org/post",
-                            "method": "post"
-                        },
-                        "buttons": {
-                            "submit": {},
-                            "reset": {}
-                        }
-                    },
-                    "fields": {
-                        "helper": "Tell us what you think about Alpaca!",
-                        "name": {
-                            "size": 1000,
-                            "helper": "Favor digitar o título da obra"
-                        }
-                    }
-                }
-            });
-        </script>
+            </script>
 
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-      <!-- Optional JavaScript -->
-      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  </body>
+    </body>
 </html>
