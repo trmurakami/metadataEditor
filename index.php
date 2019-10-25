@@ -64,10 +64,19 @@
                             "author": {
                                 "type": "array",
                                 "items": {
-                                    "title": "Nome do autor",
-                                    "type": "string",
-                                    "minLength": 2,
-                                    "maxLength": 8
+                                    "title": "Autor",
+                                    "type": "object",
+                                    "properties":{
+                                        "personName":{
+                                            "type": "string",
+                                            "title": "Nome do autor",
+                                        },
+                                        "organizationName":{
+                                            "type": "string",
+                                            "title": "Instituição",
+                                        }
+                                    }
+  
                                 }                                 
                             }
                         }
