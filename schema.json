@@ -25,7 +25,23 @@
                             "name":{
                                 "type": "string",
                                 "title": "Nome do autor"
+                            },
+                            "identifier": {
+                                "title": "Identificador",
+                                "type":"object",
+                                "properties":{
+                                    "institution": {
+                                        "type": "string",
+                                        "title": "Entidade de atribuição",
+                                        "enum": ["ORCID", "Lattes", "LC", "VIAF"]
+                                    },
+                                    "value":{
+                                        "title": "Identificador",
+                                        "type": "string"
+                                    }
+                                }
                             }
+
                         }
                     },
                     "organization":{

@@ -45,7 +45,7 @@ if ($_REQUEST["crossrefDoi"]) {
 
 ?>
 
-<br/><br/><br/><br/><br/>
+<br/><br/><br/>
 
 <?php print_r($_REQUEST); ?>
 
