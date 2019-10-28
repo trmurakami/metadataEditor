@@ -62,6 +62,15 @@
             "pattern": "^10.*",
             "required": false
         },
+        "isPartOf": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Título do periódico"
+                }
+            }
+        },
         "country": {
             "title": "País de publicação",
             "type": "select",

@@ -22,12 +22,24 @@ if ($_REQUEST["crossrefDoi"]) {
         </script>';
         $record["name"] = $work["message"]["title"][0];
         $record["doi"] = $work["message"]["DOI"];
+        $i_author = 0;
+        foreach ($work["message"]["author"] as $crossrefAuthor) {
+            $record["author"][$i_author]["person"]["name"] = ''.$crossrefAuthor["family"].', '.$crossrefAuthor["given"].'';
+            if (isset($crossrefAuthor["affiliation"])) {
+                $record["author"][$i_author]["organization"]["name"] = $crossrefAuthor["affiliation"][0];
+            }
+            $i_author++;
+        }
+        $record["isPartOf"]["name"] = $work["message"]["container-title"];
+        
         $recordJson = json_encode($record);
+
     } else {
         $crossrefMessage = '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';
-        $record["name"] = "Título";
-        $record["subtitle"] = "Subtítulo";
+        $record["name"] = "";
+        $record["subtitle"] = "";
         $recordJson = json_encode($record);
+        print_r($recordJson);
 
         
     }
@@ -39,7 +51,9 @@ if ($_REQUEST["crossrefDoi"]) {
 } else {    
     $record["name"] = "";
     $record["subtitle"] = "";
+    $record["author"][0]["person"]["name"] = "";
     $recordJson = json_encode($record);
+    
 }
 
 
@@ -93,9 +107,10 @@ if ($_REQUEST["crossrefDoi"]) {
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-        <script>
-            console.log(form.name);
-        </script>
+        <?php 
+            unset($record);
+            unset($recordJson); 
+        ?>
 
     </body>
 </html>
