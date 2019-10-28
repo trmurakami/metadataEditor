@@ -21,6 +21,7 @@ if ($_REQUEST["crossrefDoi"]) {
         var crossrefData = '.json_encode($work) .';
         </script>';
         $record["name"] = $work["message"]["title"][0];
+        $record["doi"] = $work["message"]["DOI"];
         $recordJson = json_encode($record);
     } else {
         $crossrefMessage = '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';

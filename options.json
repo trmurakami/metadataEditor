@@ -13,6 +13,14 @@
         "helper": "",
         "name": {
             "size": 1000
+        },
+        "doi": {
+            "size": 1
+        },
+        "country": {
+            "label": "País de publicação",
+            "optionLabels": ["Brasil", "Estados Unidos da América","Argentina","Canadá"],
+            "sort": false
         }
     }                       
 }

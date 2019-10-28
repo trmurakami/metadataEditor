@@ -39,6 +39,17 @@
                     }                    
                 }
             }                                 
-        }
+        },
+        "doi": {
+            "type": "string",
+            "title": "DOI",
+            "pattern": "^10.*",
+            "required": false
+        },
+        "country": {
+            "title": "País de publicação",
+            "type": "select",
+            "enum": ["bl","xxu","ag","-cn"]
+        }     
     }
 }
