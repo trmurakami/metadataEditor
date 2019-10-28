@@ -1,7 +1,7 @@
 <?php 
 
 /* Load libraries for PHP composer */ 
-require (__DIR__.'/../vendor/autoload.php'); 
+require (__DIR__.'/vendor/autoload.php'); 
 
 /* Exibir erros */
 ini_set('display_errors', 0);
@@ -15,6 +15,8 @@ if ($_REQUEST["crossrefDoi"]) {
     if ($exists == true) {
         $work = $clientCrossref->request('works/'.$_REQUEST["crossrefDoi"].'');
         print("<pre>".print_r($work, true)."</pre>");
+    } else {
+        echo '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';
     }
 }
 
