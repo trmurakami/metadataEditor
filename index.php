@@ -9,30 +9,40 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 if ($_REQUEST["crossrefDoi"]) {
+    unlink("data.json");
     $clientCrossref = new RenanBr\CrossRefClient();
     $clientCrossref->setUserAgent('GroovyBib/1.1 (http://tecbib.com/metadataEditor/; mailto:trmurakami@gmail.com)');
     $exists = $clientCrossref->exists('works/'.$_REQUEST["crossrefDoi"].'');
     if ($exists == true) {
         $work = $clientCrossref->request('works/'.$_REQUEST["crossrefDoi"].'');
         print("<pre>".print_r($work, true)."</pre>");
-
         echo '
         <script type="text/javascript">
         var crossrefData = '.json_encode($work) .';
         </script>';
-
-
+        $record["name"] = $work["message"]["title"][0];
+        $recordJson = json_encode($record);
     } else {
         $crossrefMessage = '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';
+        $record["name"] = "Título";
+        $record["subtitle"] = "Subtítulo";
+        $recordJson = json_encode($record);
+
+        
     }
+
+    $fp = fopen('data.json', 'w');
+    fwrite($fp, json_encode($record));
+    fclose($fp);
+    sleep(5);
+} else {    
+    $record["name"] = "";
+    $record["subtitle"] = "";
+    $recordJson = json_encode($record);
 }
 
 
 ?>
-
-<script>
- console.log(crossrefData);
-</script>
 
 <br/><br/><br/><br/><br/>
 
@@ -65,78 +75,14 @@ if ($_REQUEST["crossrefDoi"]) {
 
             <div id="form"></div>
             <script type="text/javascript">
-                $("#form").alpaca({
-                    "data":{
-                        "name": "Título",
-                        "subtitle": "Subtítulo"
-                    },
-                    "options":{
-                        "form": {
-                            "attributes": {
-                                "action": "http://localhost/metadataEditor/index.php",
-                                "method": "post"
-                            },
-                            "buttons": {
-                                "submit": {},
-                                "validate": {
-                                    "title": "Validate and view JSON!",
-                                    "click": function() {
-                                        this.refreshValidationState(true);
-                                        if (this.isValid(true)) {
-                                            var value = this.getValue();
-                                            alert(JSON.stringify(value, null, "  "));
-                                        }
-                                    }
-                                },                                
-                                "reset": {}
-                            }
-                        },
-                        "fields": {
-                            "helper": "",
-                            "name": {
-                                "size": 1000
-                            }
-                        }                       
-                    },
-                    "schema": {
-                        "title": "Dados da obra",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "title": "Título",
-                                "required": true
-                            },
-                            "subtitle": {
-                                "type": "string",
-                                "title": "Subtítulo",
-                                "required": false
-                            },
-                            "author": {
-                                "title": "Autores",
-                                "type": "array",
-                                "items": {
-                                    "title": "Autor",
-                                    "type": "object",
-                                    "properties":{
-                                        "personName":{
-                                            "type": "string",
-                                            "title": "Nome do autor",
-                                        },
-                                        "organizationName":{
-                                            "type": "string",
-                                            "title": "Instituição",
-                                        }
-                                    }
-  
-                                }                                 
-                            }
-                        }
-                    },
-                    "view": {
-                        "locale": "pt_BR"
-                    }
-                });
+            $("#form").alpaca({
+                "data": <?php echo $recordJson; ?>,
+                "optionsSource": "./options.json",
+                "schemaSource": "./schema.json",
+                "view": {
+                    "locale": "pt_BR"
+                }
+            });
 
             </script>
 
@@ -145,6 +91,10 @@ if ($_REQUEST["crossrefDoi"]) {
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <script>
+            console.log(form.name);
+        </script>
 
     </body>
 </html>

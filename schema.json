@@ -1,0 +1,44 @@
+{
+    "title": "Dados da obra",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "Título",
+            "required": true
+        },
+        "subtitle": {
+            "type": "string",
+            "title": "Subtítulo",
+            "required": false
+        },
+        "author": {
+            "title": "Autores",
+            "type": "array",
+            "items": {
+                "title": "Autor",
+                "type": "object",
+                "properties":{                    
+                    "person":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type": "string",
+                                "title": "Nome do autor"
+                            }
+                        }
+                    },
+                    "organization":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type": "string",
+                                "title": "Instituição"
+                            }
+                        }
+                    }                    
+                }
+            }                                 
+        }
+    }
+}

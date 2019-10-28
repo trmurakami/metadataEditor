@@ -1,0 +1,18 @@
+{
+    "form": {
+        "attributes": {
+            "action": "http://localhost/metadataEditor/index.php",
+            "method": "post"
+        },
+        "buttons": {
+            "submit": {},                               
+            "reset": {}
+        }
+    },
+    "fields": {
+        "helper": "",
+        "name": {
+            "size": 1000
+        }
+    }                       
+}
