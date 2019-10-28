@@ -15,14 +15,24 @@ if ($_REQUEST["crossrefDoi"]) {
     if ($exists == true) {
         $work = $clientCrossref->request('works/'.$_REQUEST["crossrefDoi"].'');
         print("<pre>".print_r($work, true)."</pre>");
+
+        echo '
+        <script type="text/javascript">
+        var crossrefData = '.json_encode($work) .';
+        </script>';
+
+
     } else {
-        echo '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';
+        $crossrefMessage = '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';
     }
 }
 
 
 ?>
 
+<script>
+ console.log(crossrefData);
+</script>
 
 <br/><br/><br/><br/><br/>
 
@@ -50,6 +60,8 @@ if ($_REQUEST["crossrefDoi"]) {
     <body>
         <div class="container">
             <h1>Editor</h1>
+
+            <?php echo $crossrefMessage ?>
 
             <div id="form"></div>
             <script type="text/javascript">
