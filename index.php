@@ -1,3 +1,31 @@
+<?php 
+
+/* Load libraries for PHP composer */ 
+require (__DIR__.'/../vendor/autoload.php'); 
+
+/* Exibir erros */
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(0);
+
+if ($_REQUEST["crossrefDoi"]) {
+    $clientCrossref = new RenanBr\CrossRefClient();
+    $clientCrossref->setUserAgent('GroovyBib/1.1 (http://tecbib.com/metadataEditor/; mailto:trmurakami@gmail.com)');
+    $exists = $clientCrossref->exists('works/'.$_REQUEST["crossrefDoi"].'');
+    if ($exists == true) {
+        $work = $clientCrossref->request('works/'.$_REQUEST["crossrefDoi"].'');
+        print("<pre>".print_r($work, true)."</pre>");
+    }
+}
+
+
+?>
+
+
+<br/><br/><br/><br/><br/>
+
+<?php print_r($_REQUEST); ?>
+
 <!doctype html>
 <html lang="pt_BR">
     <head>
@@ -31,11 +59,21 @@
                     "options":{
                         "form": {
                             "attributes": {
-                                "action": "http://httpbin.org/post",
+                                "action": "http://localhost/metadataEditor/index.php",
                                 "method": "post"
                             },
                             "buttons": {
                                 "submit": {},
+                                "validate": {
+                                    "title": "Validate and view JSON!",
+                                    "click": function() {
+                                        this.refreshValidationState(true);
+                                        if (this.isValid(true)) {
+                                            var value = this.getValue();
+                                            alert(JSON.stringify(value, null, "  "));
+                                        }
+                                    }
+                                },                                
                                 "reset": {}
                             }
                         },
@@ -80,6 +118,9 @@
                                 }                                 
                             }
                         }
+                    },
+                    "view": {
+                        "locale": "pt_BR"
                     }
                 });
 
