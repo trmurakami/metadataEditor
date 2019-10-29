@@ -14,6 +14,9 @@ ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(0);
 
+var_dump(urldecode($_REQUEST["record"]));
+var_dump(json_decode(urldecode($_REQUEST["record"]), true));
+
 if (!isset($_REQUEST["formType"])) {
     $_REQUEST["formType"] = "produsp";
 }
