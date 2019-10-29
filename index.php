@@ -10,6 +10,10 @@ ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(0);
 
+if (!isset($_REQUEST["formType"])) {
+    $_REQUEST["formType"] = "produsp";
+}
+
 if ($_REQUEST["crossrefDoi"]) {
     unlink("data.json");
     $clientCrossref = new RenanBr\CrossRefClient();
@@ -52,9 +56,7 @@ if ($_REQUEST["crossrefDoi"]) {
                 $i_funder++;
 
             }
-        }
-
-        
+        }        
         $recordJson = json_encode($record);
 
     } else {

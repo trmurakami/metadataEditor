@@ -7,11 +7,6 @@
             "title": "Título",
             "required": true
         },    
-        "subtitle": {
-            "type": "string",
-            "title": "Subtítulo",
-            "required": false
-        },
         "author": {
             "title": "Autores",
             "type": "array",
@@ -116,7 +111,7 @@
                     "title": "Página final"
                 }                                                  
             }
-        },
+        },      
         "country": {
             "title": "País de publicação",
             "type": "select",
@@ -127,6 +122,10 @@
             "type": "array",
             "title": "Palavras-chave"
         },
+        "description": {
+            "type": "array",
+            "title": "Resumo"
+        },  
         "funder": {
             "title": "Agência de fomento",
             "type": "array",

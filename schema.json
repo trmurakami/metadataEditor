@@ -134,6 +134,10 @@
             "type": "array",
             "title": "Palavras-chave"
         },
+        "description": {
+            "type": "array",
+            "title": "Resumo"
+        },       
         "funder": {
             "title": "Agência de fomento",
             "type": "array",
