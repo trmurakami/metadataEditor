@@ -3,6 +3,8 @@
 /* Load libraries for PHP composer */ 
 require (__DIR__.'/vendor/autoload.php'); 
 
+require 'functions.php';
+
 /* Exibir erros */
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
@@ -22,6 +24,7 @@ if ($_REQUEST["crossrefDoi"]) {
         </script>';
         $record["name"] = $work["message"]["title"][0];
         $record["subtitle"] = $work["message"]["subtitle"][0];
+        $record["ignoreCharacters"] = Lookup::article($work["message"]["title"][0]);
         $record["doi"] = $work["message"]["DOI"];
         $i_author = 0;
         foreach ($work["message"]["author"] as $crossrefAuthor) {
@@ -40,6 +43,18 @@ if ($_REQUEST["crossrefDoi"]) {
         $record["isPartOf"]["pageStart"] = $work["message"]["page"];
         $record["url"] = $work["message"]["url"];
         $record["about"] = $work["message"]["subject"];
+
+        $i_funder = 0;
+        if (isset($work["message"]["funder"])) {
+            echo "SIM";
+            foreach ($work["message"]["funder"] as $crossrefFunder) {
+                $record["funder"][$i_funder]["organization"]["name"] = $crossrefFunder["name"];
+                $record["funder"][$i_funder]["organization"]["projectNumber"] = $crossrefFunder["award"][0];
+                $i_funder++;
+
+            }
+        }
+
         
         $recordJson = json_encode($record);
 
@@ -47,6 +62,7 @@ if ($_REQUEST["crossrefDoi"]) {
         $crossrefMessage = '<br/><br/><div class="alert alert-warning" role="alert">DOI não encontrado na Crossref</div>';
         $record["name"] = "";
         $record["subtitle"] = "";
+        $record["ignoreCharacters"] = 0;
         $recordJson = json_encode($record);
         print_r($recordJson);
 
@@ -60,6 +76,7 @@ if ($_REQUEST["crossrefDoi"]) {
 } else {    
     $record["name"] = "";
     $record["subtitle"] = "";
+    $record["ignoreCharacters"] = 0;
     $record["author"][0]["person"]["name"] = "";
     $recordJson = json_encode($record);
     

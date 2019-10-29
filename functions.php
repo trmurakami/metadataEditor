@@ -28,7 +28,7 @@ class Exporters
             $record[] = '000000001 1001  L $$a'.$r["author_0_person_name"].'$$d$$0'.((isset($r["author_0_person_identifier_value"])? $r["author_0_person_identifier_value"] : '')).'$$1$$4$$5$$7$$8'.((isset($r["author_0_organization_name"])? $r["author_0_organization_name"] : '')).'$$9';
         }         
         
-        $record[] = '000000001 24510 L $$a'.$r["name"].'';                                            
+        $record[] = '000000001 2451'.$r["ignoreCharacters"].' L $$a'.$r["name"].'';                                            
         if (isset($r["trabalhoEmEventos"])) {  
             $record[] = '000000001 260   L $$a'.((isset($r["trabalhoEmEventos"]["cidadeDaEditora"]) && $r["trabalhoEmEventos"]["cidadeDaEditora"])? $r["trabalhoEmEventos"]["cidadeDaEditora"] : '').'$$b'.((isset($r["trabalhoEmEventos"]["nomeDaEditora"]) && $r["trabalhoEmEventos"]["nomeDaEditora"])? $r["trabalhoEmEventos"]["nomeDaEditora"] : '').'$$c'.$r["datePublished"].'';
         } else {
@@ -46,17 +46,16 @@ class Exporters
             $record[] = '000000001 5101  L $$aIndexado no:';
         }
         
-        if (isset($r["sponsor"]["funder"])) {
-            foreach ($r["sponsor"]["funder"] as $funder) {
-                if (count($funder["award"]) > 0) {
-                    $funder_string = '$$f'.implode("\$\$f", $funder["award"]).'';
-                } else {
-                    $funder_string = "";
-                }
-                $record[] = '000000001 536   L $$a'.$funder["name"].''.$funder_string.'';
+        $i_funder = 0;
+        do {
+            $key_organization_name =  'funder_'.$i_funder.'_organization_name';
+            $key_organization_projectNumber =  'funder_'.$i_funder.'_organization_projectNumber';
+            if (isset($r[$key_organization_name])) {
+                $record[] = '000000001 536   L $$a'.$r[$key_organization_name].'$$f'.((isset($r[$key_organization_projectNumber])? $r[$key_organization_projectNumber] : '')).'';
             }
-            
-        }
+            $i_funder++;
+        } while ($i_funder < 100);
+
 
         $i_about = 0;
         do {
@@ -129,6 +128,23 @@ class Exporters
     }    
 
 }
+
+Class Lookup {
+    
+    static function article($title) {
+        $articles = ["the", "an", "a", "le", "la", "l’", "les", "un", "une", "a", "des", "der", "die", "das", "ein", "eine", "il",   "la", "lo", "i", "gli", "le", "uno", "una", "un’", "o", "a", "os", "as", "um", "uma", "uns", "umas", "el", "la", "le", "lo", "las", "los", "unos", "unas"];
+        $titleArray = explode(" ", $title);
+        if (in_array(strtolower($titleArray[0]), $articles)) {
+            echo "SIM";
+            $charactersToIgnore = strlen($titleArray[0]) + 1;            
+        } else {
+            echo "Não";
+            $charactersToIgnore = 0;
+        }
+        return $charactersToIgnore;
+    }
+
+} 
 
 
 
