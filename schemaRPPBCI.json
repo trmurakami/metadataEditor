@@ -1,0 +1,160 @@
+{
+    "title": "Dados da obra",
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "title": "Título",
+            "required": true
+        },    
+        "subtitle": {
+            "type": "string",
+            "title": "Subtítulo",
+            "required": false
+        },
+        "author": {
+            "title": "Autores",
+            "type": "array",
+            "items": {
+                "title": "Autor",
+                "type": "object",
+                "properties":{                    
+                    "person":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type": "string",
+                                "title": "Nome do autor"
+                            },
+                            "identifier": {
+                                "title": "Identificador",
+                                "type":"object",
+                                "properties":{
+                                    "institution": {
+                                        "type": "string",
+                                        "title": "Entidade de atribuição",
+                                        "enum": ["ORCID", "Lattes", "LC", "VIAF"]
+                                    },
+                                    "value":{
+                                        "title": "Identificador",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+
+                        }
+                    },
+                    "organization":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type": "string",
+                                "title": "Instituição"
+                            }
+                        }
+                    }                    
+                }
+            }                                 
+        },
+        "publisher": {
+            "title": "Imprenta",
+            "type": "object",
+            "properties": {                 
+                "organization":{
+                    "type":"object",
+                    "properties":{
+                        "name":{
+                            "type": "string",
+                            "title": "Editora"
+                        }
+                    }
+                } 
+            }                                 
+        },
+        "doi": {
+            "type": "string",
+            "title": "DOI",
+            "pattern": "^10.*",
+            "required": false
+        },
+        "url": {
+            "type": "string",
+            "title": "URL"
+        },        
+        "datePublished": {
+            "type": "date",
+            "title": "Ano da publicação",
+            "picker": {
+                "format": "YYYY"
+            }
+        },        
+        "isPartOf": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Título do periódico"
+                },
+                "ISSN":{
+                    "type": "string",
+                    "title": "ISSN"
+                },
+                "volume":{
+                    "type": "string",
+                    "title": "Volume"
+                },
+                "issue":{
+                    "type": "string",
+                    "title": "Fascículo"
+                },
+                "pageStart":{
+                    "type": "string",
+                    "title": "Página inicial"
+                },
+                "pageEnd":{
+                    "type": "string",
+                    "title": "Página final"
+                }                                                  
+            }
+        },
+        "country": {
+            "title": "País de publicação",
+            "type": "select",
+            "enum": ["bl","xxu","ag","-cn"],
+            "required": true
+        },
+        "about": {
+            "type": "array",
+            "title": "Palavras-chave"
+        },
+        "funder": {
+            "title": "Agência de fomento",
+            "type": "array",
+            "items": {
+                "title": "Fomento",
+                "type": "object",
+                "properties":{                    
+                    "organization":{
+                        "type":"object",
+                        "properties":{
+                            "name":{
+                                "type": "string",
+                                "title": "Agência de fomento"
+                            },
+                            "projectNumber":{
+                                "type": "string",
+                                "title": "Número do fomento"
+                            }
+                        }
+                    }                
+                }
+            }                                 
+        },
+        "format": {
+            "title": "Formato de exportação",
+            "type": "select",
+            "enum": ["alephseq","marc","ris","bibtex"],
+            "required": true
+        }              
+    }
+}

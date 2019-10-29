@@ -122,58 +122,79 @@ if ($_REQUEST["crossrefDoi"]) {
         <div class="container">
             <h1>Editor</h1>
 
-            <?php if (!$_REQUEST["crossrefDoi"]):  ?>
+            <?php if ($_REQUEST["formType"] == "produsp"):  ?>
 
-                <div id="crossref"></div>
-                <script type="text/javascript">
-                $("#crossref").alpaca({
-                    "options": {
-                        "form": {
-                            "attributes": {
-                                "action": "http://localhost/metadataEditor/index.php",
-                                "method": "get"
-                            },
-                            "buttons": {
-                                "submit": {
-                                    "title": "Buscar DOI"
+                <?php if (!$_REQUEST["crossrefDoi"]):  ?>
+
+                    <div id="crossref"></div>
+                    <script type="text/javascript">
+                    $("#crossref").alpaca({
+                        "options": {
+                            "form": {
+                                "attributes": {
+                                    "action": "http://localhost/metadataEditor/index.php",
+                                    "method": "get"
+                                },
+                                "buttons": {
+                                    "submit": {
+                                        "title": "Buscar DOI"
+                                    }
                                 }
                             }
-                        }
-                    },
-                    "schema": {
-                        "title": "Crossref",
-                        "type": "object",
-                        "properties": {
-                            "crossrefDoi": {
-                                "type": "string",
-                                "title": "doi",
-                                "pattern": "^10.*",
-                                "minLength": 10
+                        },
+                        "schema": {
+                            "title": "Crossref",
+                            "type": "object",
+                            "properties": {
+                                "crossrefDoi": {
+                                    "type": "string",
+                                    "title": "doi",
+                                    "pattern": "^10.*",
+                                    "minLength": 10
+                                }
                             }
-                        }
-                    },
+                        },
+                        "view": {
+                        "locale": "pt_BR"
+                        }                    
+                    });
+
+                    </script>
+                <?php endif; ?>            
+
+                <?php echo $crossrefMessage ?>
+
+                <div id="form"></div>
+                <script type="text/javascript">
+                $("#form").alpaca({
+                    "data": <?php echo $recordJson; ?>,
+                    "optionsSource": "./options.json",
+                    "schemaSource": "./schema.json",
                     "view": {
-                    "locale": "pt_BR"
-                    }                    
+                        "locale": "pt_BR"
+                    }
                 });
 
                 </script>
-            <?php endif; ?>            
 
-            <?php echo $crossrefMessage ?>
+                <?php elseif($_REQUEST["formType"] == "rppbci") : ?>
 
-            <div id="form"></div>
-            <script type="text/javascript">
-            $("#form").alpaca({
-                "data": <?php echo $recordJson; ?>,
-                "optionsSource": "./options.json",
-                "schemaSource": "./schema.json",
-                "view": {
-                    "locale": "pt_BR"
-                }
-            });
+                    <div id="form"></div>
+                    <script type="text/javascript">
+                    $("#form").alpaca({
+                        "data": <?php echo $recordJson; ?>,
+                        "optionsSource": "./optionsRPPBCI.json",
+                        "schemaSource": "./schemaRPPBCI.json",
+                        "view": {
+                            "locale": "pt_BR"
+                        }
+                    });
 
-            </script>
+                    </script>
+
+                <?php endif; ?> 
+
+            <br/><br/><br/><br/><br/>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
