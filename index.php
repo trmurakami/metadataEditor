@@ -35,6 +35,10 @@ if ($_REQUEST["crossrefDoi"]) {
         $record["publisher"]["organization"]["name"] = $work["message"]["publisher"];
         $record["isPartOf"]["name"] = $work["message"]["container-title"];
         $record["isPartOf"]["ISSN"] = implode(";", $work["message"]["ISSN"]);
+        $record["isPartOf"]["volume"] = $work["message"]["volume"];
+        $record["isPartOf"]["issue"] = $work["message"]["journal-issue"]["issue"];
+        $record["isPartOf"]["pageStart"] = $work["message"]["page"];
+        $record["url"] = $work["message"]["url"];
         $record["about"] = $work["message"]["subject"];
         
         $recordJson = json_encode($record);

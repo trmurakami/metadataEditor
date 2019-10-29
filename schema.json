@@ -77,6 +77,10 @@
             "pattern": "^10.*",
             "required": false
         },
+        "url": {
+            "type": "string",
+            "title": "URL"
+        },        
         "datePublished": {
             "type": "date",
             "title": "Ano da publicação",
@@ -94,7 +98,23 @@
                 "ISSN":{
                     "type": "string",
                     "title": "ISSN"
-                }
+                },
+                "volume":{
+                    "type": "string",
+                    "title": "Volume"
+                },
+                "issue":{
+                    "type": "string",
+                    "title": "Fascículo"
+                },
+                "pageStart":{
+                    "type": "string",
+                    "title": "Página inicial"
+                },
+                "pageEnd":{
+                    "type": "string",
+                    "title": "Página final"
+                }                                                  
             }
         },
         "country": {
