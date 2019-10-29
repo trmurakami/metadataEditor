@@ -27,6 +27,12 @@
                 "format": "YYYY"
             },
             "manualEntry": false
+        },
+        "description": {
+            "type":"array",
+            "items": {
+                "type": "textarea"
+            }
         }
     }                       
 }

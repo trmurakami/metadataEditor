@@ -6,7 +6,11 @@
             "type": "string",
             "title": "Título",
             "required": true
-        },    
+        },
+        "alternateName": {
+            "type": "string",
+            "title": "Título traduzido"
+        },              
         "author": {
             "title": "Autores",
             "type": "array",
@@ -148,12 +152,6 @@
                     }                
                 }
             }                                 
-        },
-        "format": {
-            "title": "Formato de exportação",
-            "type": "select",
-            "enum": ["alephseq","marc","ris","bibtex"],
-            "required": true
-        }              
+        }       
     }
 }
