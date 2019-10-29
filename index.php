@@ -46,7 +46,6 @@ if ($_REQUEST["crossrefDoi"]) {
 
         $i_funder = 0;
         if (isset($work["message"]["funder"])) {
-            echo "SIM";
             foreach ($work["message"]["funder"] as $crossrefFunder) {
                 $record["funder"][$i_funder]["organization"]["name"] = $crossrefFunder["name"];
                 $record["funder"][$i_funder]["organization"]["projectNumber"] = $crossrefFunder["award"][0];
@@ -122,6 +121,44 @@ if ($_REQUEST["crossrefDoi"]) {
     <body>
         <div class="container">
             <h1>Editor</h1>
+
+            <?php if (!$_REQUEST["crossrefDoi"]):  ?>
+
+                <div id="crossref"></div>
+                <script type="text/javascript">
+                $("#crossref").alpaca({
+                    "options": {
+                        "form": {
+                            "attributes": {
+                                "action": "http://localhost/metadataEditor/index.php",
+                                "method": "get"
+                            },
+                            "buttons": {
+                                "submit": {
+                                    "title": "Buscar DOI"
+                                }
+                            }
+                        }
+                    },
+                    "schema": {
+                        "title": "Crossref",
+                        "type": "object",
+                        "properties": {
+                            "crossrefDoi": {
+                                "type": "string",
+                                "title": "doi",
+                                "pattern": "^10.*",
+                                "minLength": 10
+                            }
+                        }
+                    },
+                    "view": {
+                    "locale": "pt_BR"
+                    }                    
+                });
+
+                </script>
+            <?php endif; ?>            
 
             <?php echo $crossrefMessage ?>
 

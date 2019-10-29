@@ -135,10 +135,8 @@ Class Lookup {
         $articles = ["the", "an", "a", "le", "la", "l’", "les", "un", "une", "a", "des", "der", "die", "das", "ein", "eine", "il",   "la", "lo", "i", "gli", "le", "uno", "una", "un’", "o", "a", "os", "as", "um", "uma", "uns", "umas", "el", "la", "le", "lo", "las", "los", "unos", "unas"];
         $titleArray = explode(" ", $title);
         if (in_array(strtolower($titleArray[0]), $articles)) {
-            echo "SIM";
             $charactersToIgnore = strlen($titleArray[0]) + 1;            
         } else {
-            echo "Não";
             $charactersToIgnore = 0;
         }
         return $charactersToIgnore;
