@@ -1,11 +1,13 @@
 {
     "form": {
         "attributes": {
-            "action": "http://localhost/metadataEditor/index.php",
+            "action": "http://localhost/metadataEditor/export.php",
             "method": "post"
         },
         "buttons": {
-            "submit": {},                               
+            "submit": {
+                "title": "Exportar"
+            },                               
             "reset": {}
         }
     },
@@ -14,13 +16,17 @@
         "name": {
             "size": 1000
         },
-        "doi": {
-            "size": 1
-        },
         "country": {
             "label": "País de publicação",
             "optionLabels": ["Brasil", "Estados Unidos da América","Argentina","Canadá"],
             "sort": false
+        },
+        "datePublished": {
+            "type": "date",
+            "picker": {
+                "format": "YYYY"
+            },
+            "manualEntry": false
         }
     }                       
 }

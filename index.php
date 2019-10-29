@@ -30,7 +30,10 @@ if ($_REQUEST["crossrefDoi"]) {
             }
             $i_author++;
         }
+        $record["datePublished"] = (string)$work["message"]["issued"]["date-parts"][0][0];
+        $record["publisher"]["organization"]["name"] = $work["message"]["publisher"];
         $record["isPartOf"]["name"] = $work["message"]["container-title"];
+        $record["isPartOf"]["ISSN"] = implode(";", $work["message"]["ISSN"]);
         
         $recordJson = json_encode($record);
 
@@ -80,6 +83,21 @@ if ($_REQUEST["crossrefDoi"]) {
         <link type="text/css" href="//cdn.jsdelivr.net/npm/alpaca@1.5.27/dist/alpaca/bootstrap/alpaca.min.css" rel="stylesheet"/>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/alpaca@1.5.27/dist/alpaca/bootstrap/alpaca.min.js"></script>
 
+
+
+        <!-- jQuery UI Support -->
+        <script type="text/javascript" src="http://www.alpacajs.org/lib/jquery-ui/jquery-ui.js"></script>
+        <link type="text/css" href="http://www.alpacajs.org/lib/jquery-ui/themes/cupertino/jquery-ui.min.css" rel="stylesheet"/>
+
+        <!-- Required for jQuery UI DateTimePicker control -->
+        <script type="text/javascript" src="http://www.alpacajs.org/lib/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.js"></script>
+        <link type="text/css" href="http://www.alpacajs.org/lib/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.css" rel="stylesheet"/>        
+
+        <!-- bootstrap datetimepicker for date, time and datetime controls -->
+        <script src="http://www.alpacajs.org/lib/moment/min/moment-with-locales.min.js"></script>
+        <script src="http://www.alpacajs.org/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <link rel="stylesheet" media="screen" href="http://www.alpacajs.org/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"/>
+
         <title>Editor de registros</title>
     </head>
     <body>
@@ -106,6 +124,9 @@ if ($_REQUEST["crossrefDoi"]) {
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
 
         <?php 
             unset($record);

@@ -56,18 +56,44 @@
                 }
             }                                 
         },
+        "publisher": {
+            "title": "Imprenta",
+            "type": "object",
+            "properties": {                 
+                "organization":{
+                    "type":"object",
+                    "properties":{
+                        "name":{
+                            "type": "string",
+                            "title": "Editora"
+                        }
+                    }
+                } 
+            }                                 
+        },
         "doi": {
             "type": "string",
             "title": "DOI",
             "pattern": "^10.*",
             "required": false
         },
+        "datePublished": {
+            "type": "date",
+            "title": "Ano da publicação",
+            "picker": {
+                "format": "YYYY"
+            }
+        },        
         "isPartOf": {
             "type": "object",
             "properties": {
                 "name": {
                     "type": "string",
                     "title": "Título do periódico"
+                },
+                "ISSN":{
+                    "type": "string",
+                    "title": "ISSN"
                 }
             }
         },
@@ -75,6 +101,12 @@
             "title": "País de publicação",
             "type": "select",
             "enum": ["bl","xxu","ag","-cn"]
-        }     
+        },
+        "format": {
+            "title": "Formato de exportação",
+            "type": "select",
+            "enum": ["alephseq","marc","ris","bibtex"],
+            "required": true
+        }              
     }
 }
