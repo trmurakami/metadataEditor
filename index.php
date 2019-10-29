@@ -21,6 +21,7 @@ if ($_REQUEST["crossrefDoi"]) {
         var crossrefData = '.json_encode($work) .';
         </script>';
         $record["name"] = $work["message"]["title"][0];
+        $record["subtitle"] = $work["message"]["subtitle"][0];
         $record["doi"] = $work["message"]["DOI"];
         $i_author = 0;
         foreach ($work["message"]["author"] as $crossrefAuthor) {
@@ -34,6 +35,7 @@ if ($_REQUEST["crossrefDoi"]) {
         $record["publisher"]["organization"]["name"] = $work["message"]["publisher"];
         $record["isPartOf"]["name"] = $work["message"]["container-title"];
         $record["isPartOf"]["ISSN"] = implode(";", $work["message"]["ISSN"]);
+        $record["about"] = $work["message"]["subject"];
         
         $recordJson = json_encode($record);
 
@@ -61,10 +63,6 @@ if ($_REQUEST["crossrefDoi"]) {
 
 
 ?>
-
-<br/><br/><br/>
-
-<?php print_r($_REQUEST); ?>
 
 <!doctype html>
 <html lang="pt_BR">

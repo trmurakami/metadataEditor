@@ -102,6 +102,10 @@
             "type": "select",
             "enum": ["bl","xxu","ag","-cn"]
         },
+        "about": {
+            "type": "array",
+            "title": "Palavras-chave"
+        },        
         "format": {
             "title": "Formato de exportação",
             "type": "select",
