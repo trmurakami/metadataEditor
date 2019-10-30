@@ -15,10 +15,29 @@ if (file_exists('../elasticfind/elasticfind.php')) {
     include '../elasticfind/elasticfind.php';
 }
 
-//print("<pre>".print_r($_REQUEST, true)."</pre>");
+print("<pre>".print_r($_REQUEST, true)."</pre>");
 
 $body["doc"]["name"] = $_REQUEST["name"];
 $body["doc"]["alternateName"] = $_REQUEST["alternateName"];
+
+$i = 0;
+do {
+    $key =  'author_'.$i.'_person_name';
+    $key_person_identifier_value =  'author_'.$i.'_person_identifier_value';
+    $key_organization_name =  'author_'.$i.'_organization_name';
+    $key_organization_external =  'author_'.$i.'_organization_external';
+
+    if (isset($_REQUEST[$key])) {
+        $body["doc"]["author"][$i]["person"]["name"] = $_REQUEST[$key];
+        $body["doc"]["author"][$i]["person"]["identifier"]["value"] = $_REQUEST[$key_person_identifier_value];        
+        $body["doc"]["author"][$i]["organization"]["name"] = $_REQUEST[$key_organization_name];
+        
+    }
+    $i++;
+} while ($i < 100);
+
+
+
 $body["doc"]["doi"] = $_REQUEST["doi"];
 $body["doc"]["datePublished"] = $_REQUEST["datePublished"];
 $body["doc"]["isPartOf"]["name"] = $_REQUEST["isPartOf_name"];
