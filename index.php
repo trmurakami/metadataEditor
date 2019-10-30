@@ -14,15 +14,19 @@ ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(0);
 
-var_dump(urldecode($_REQUEST["record"]));
-var_dump(json_decode(urldecode($_REQUEST["record"]), true));
+if (isset($_REQUEST["record"])) {
+    $_REQUEST["formType"] = "rppbci";
+    $record = json_decode(urldecode($_REQUEST["record"]), true);
+    $recordJson = json_encode($record);
+    //print("<pre>".print_r($record, true)."</pre>");
+    
+}
 
 if (!isset($_REQUEST["formType"])) {
     $_REQUEST["formType"] = "produsp";
 }
 
 if ($_REQUEST["crossrefDoi"]) {
-    unlink("data.json");
     $clientCrossref = new RenanBr\CrossRefClient();
     $clientCrossref->setUserAgent('GroovyBib/1.1 (http://tecbib.com/metadataEditor/; mailto:trmurakami@gmail.com)');
     $exists = $clientCrossref->exists('works/'.$_REQUEST["crossrefDoi"].'');
@@ -71,23 +75,15 @@ if ($_REQUEST["crossrefDoi"]) {
         $record["name"] = "";
         $record["subtitle"] = "";
         $record["ignoreCharacters"] = 0;
-        $recordJson = json_encode($record);
-        print_r($recordJson);
 
         
     }
+}
 
-    $fp = fopen('data.json', 'w');
-    fwrite($fp, json_encode($record));
-    fclose($fp);
-    sleep(5);
-} else {    
+if (!isset($_REQUEST["crossrefDoi"]) || !isset($_REQUEST["record"])) {
     $record["name"] = "";
     $record["subtitle"] = "";
     $record["ignoreCharacters"] = 0;
-    $record["author"][0]["person"]["name"] = "";
-    $recordJson = json_encode($record);
-    
 }
 
 
