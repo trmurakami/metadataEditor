@@ -17,6 +17,7 @@ error_reporting(0);
 if (isset($_REQUEST["record"])) {
     $_REQUEST["formType"] = "rppbci";
     $record = json_decode(urldecode($_REQUEST["record"]), true);
+    $record["rppbci_id"] = $_REQUEST["rppbci_id"];
     $recordJson = json_encode($record);
     //print("<pre>".print_r($record, true)."</pre>");
     

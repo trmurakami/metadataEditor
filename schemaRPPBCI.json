@@ -2,6 +2,11 @@
     "title": "Dados da obra",
     "type": "object",
     "properties": {
+        "rppbci_id": {
+            "type": "string",
+            "title": "ID",
+            "hidden": true
+        },        
         "name": {
             "type": "string",
             "title": "Título",
