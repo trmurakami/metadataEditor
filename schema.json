@@ -169,7 +169,7 @@
         "format": {
             "title": "Formato de exportação",
             "type": "select",
-            "enum": ["alephseq","marc","ris","bibtex"],
+            "enum": ["alephseq","ris","bibtex"],
             "required": true
         }              
     }

@@ -57,16 +57,6 @@ class Exporters
         } while ($i_funder < 100);
 
 
-        $i_about = 0;
-        do {
-            $key_about =  'about_'.$i_about.'';
-            if (isset($r[$key_about])) {
-                $record[] = '000000001 650 7 L $$a'.$r[$key_about].'';
-            }
-            $i_about++;
-        } while ($i_about < 100);    
-        
-        
         $record[] = '000000001 650 7 L $$a';
         $record[] = '000000001 650 7 L $$a';
         $record[] = '000000001 650 7 L $$a';
@@ -86,17 +76,6 @@ class Exporters
             $i++;
         } while ($i < 100);
      
-        
-        if (isset($r["trabalhoEmEventos"])) {
-            if (empty($r["trabalhoEmEventos"]["cidadeDoEvento"])) {
-                $r["trabalhoEmEventos"]["cidadeDoEvento"] = "Não informado";
-            }
-
-            $record[] = '000000001 7112  L $$a'.$r["trabalhoEmEventos"]["nomeDoEvento"].'$$d('.((isset($r["trabalhoEmEventos"]["anoDeRealizacao"]) && $r["trabalhoEmEventos"]["anoDeRealizacao"])? $r["trabalhoEmEventos"]["anoDeRealizacao"] : '').'$$c'.$r["trabalhoEmEventos"]["cidadeDoEvento"].')';
-            
-            $record[] = '000000001 7730  L $$t'.((isset($r["trabalhoEmEventos"]["tituloDosAnaisOuProceedings"]) && $r["trabalhoEmEventos"]["tituloDosAnaisOuProceedings"])? $r["trabalhoEmEventos"]["tituloDosAnaisOuProceedings"] : '').'$$x'.((isset($r["trabalhoEmEventos"]["isbn"]) && $r["trabalhoEmEventos"]["isbn"])? $r["trabalhoEmEventos"]["isbn"] : '').'$$hv. , n. , p.'.((isset($r["trabalhoEmEventos"]["paginaInicial"]) && $r["trabalhoEmEventos"]["paginaInicial"])? $r["trabalhoEmEventos"]["paginaInicial"] : '').'-'.((isset($r["trabalhoEmEventos"]["paginaFinal"]) && $r["trabalhoEmEventos"]["paginaFinal"])? $r["trabalhoEmEventos"]["paginaFinal"] : '').', '.((isset($r["trabalhoEmEventos"]["anoDeRealizacao"]) && $r["trabalhoEmEventos"]["anoDeRealizacao"])? $r["trabalhoEmEventos"]["anoDeRealizacao"] : '').'';
-        }
-        
         if (isset($r["isPartOf_name"])) {
             $record[] = '000000001 7730  L $$t'.$r["isPartOf_name"].'$$x'.((isset($r["isPartOf_ISSN"])? $r["isPartOf_ISSN"] : '')).'$$hv.'.((isset($r["isPartOf_volume"])? $r["isPartOf_volume"] : '')).', n. '.((isset($r["isPartOf_issue"])? $r["isPartOf_issue"] : '')).', p.'.((isset($r["isPartOf_pageStart"])? $r["isPartOf_pageStart"] : '')).'-'.((isset($r["isPartOf_pageEnd"])? $r["isPartOf_pageEnd"] : '')).', '.$r["datePublished"].'';
         }                                            
@@ -110,15 +89,22 @@ class Exporters
         
         if (!empty($r['url'])) {                                            
             $record[] = '000000001 8564  L $$zClicar sobre o botão para acesso ao texto completo$$u'.$r["url"].'$$3Documento completo';           
-        }           
-        
-        if (isset($r["trabalhoEmEventos"])) {
-            $record[] = '000000001 945   L $$aP$$bTRABALHO DE EVENTO$$c10$$j'.$r["datePublished"].'$$l';
         }
-        if (isset($r["isPartOf"])) {
+
+        if (isset($r["isPartOf_name"])) {
             $record[] = '000000001 945   L $$aP$$bARTIGO DE PERIODICO$$c01$$j'.$r["datePublished"].'$$l';
         }                                            
-        $record[] = '000000001 946   L $$a';   
+        $record[] = '000000001 946   L $$a';
+        
+        $i_about = 0;
+        do {
+            $key_about =  'about_'.$i_about.'';
+            if (isset($r[$key_about])) {
+                $record[] = '000000001 952   L $$a'.$r[$key_about].'';
+            }
+            $i_about++;
+        } while ($i_about < 100);          
+
         
         //sort($record);
 
