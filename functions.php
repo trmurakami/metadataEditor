@@ -25,7 +25,7 @@ class Exporters
 
 
         if (isset($r["author_0_person_name"])) {
-            $record[] = '000000001 1001  L $$a'.$r["author_0_person_name"].'$$d$$0'.((isset($r["author_0_person_identifier_value"])? $r["author_0_person_identifier_value"] : '')).'$$1$$4$$5$$7$$8'.((isset($r["author_0_organization_name"])? $r["author_0_organization_name"] : '')).'$$9';
+            $record[] = '000000001 1001  L $$a'.$r["author_0_person_name"].'$$d$$0'.((isset($r["author_0_person_identifier_value"])? $r["author_0_person_identifier_value"] : '')).'$$1$$4$$5'.((isset($r["author_0_organization_external"])? $r["author_0_organization_external"] : '')).'$$7$$8'.((isset($r["author_0_organization_name"])? $r["author_0_organization_name"] : '')).'$$9';
         }         
         
         $record[] = '000000001 2451'.$r["ignoreCharacters"].' L $$a'.$r["name"].'';                                            
@@ -78,9 +78,10 @@ class Exporters
             $key =  'author_'.$i.'_person_name';
             $key_person_identifier_value =  'author_'.$i.'_person_identifier_value';
             $key_organization_name =  'author_'.$i.'_organization_name';
+            $key_organization_external =  'author_'.$i.'_organization_external';
 
             if (isset($r[$key])) {
-                $record[] = '000000001 7001  L $$a'.$r[$key].'$$d$$0'.((isset($r[$key_person_identifier_value])? $r[$key_person_identifier_value] : '')).'$$1$$4$$5$$7$$8'.((isset($r[$key_organization_name])? $r[$key_organization_name] : '')).'$$9';
+                $record[] = '000000001 7001  L $$a'.$r[$key].'$$d$$0'.((isset($r[$key_person_identifier_value])? $r[$key_person_identifier_value] : '')).'$$1$$4$$5'.((isset($r[$key_organization_external])? $r[$key_organization_external] : '')).'$$7$$8'.((isset($r[$key_organization_name])? $r[$key_organization_name] : '')).'$$9';
             }
             $i++;
         } while ($i < 100);

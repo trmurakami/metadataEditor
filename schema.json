@@ -57,7 +57,12 @@
                             "name":{
                                 "type": "string",
                                 "title": "Instituição"
-                            }
+                            },
+                            "external":{
+                                "type": "select",
+                                "title": "É um autor externo?",
+                                "enum": ["(*)"]
+                            }                            
                         }
                     }                    
                 }
