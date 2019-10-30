@@ -20,10 +20,10 @@ if (isset($_REQUEST["delete_id"])) {
     header("Location: ../index.php");
 }
 
-//print("<pre>".print_r($_REQUEST, true)."</pre>");
+print("<pre>".print_r($_REQUEST, true)."</pre>");
 
 
-
+$body["doc"]["type"] = $_REQUEST["type"];
 $body["doc"]["name"] = $_REQUEST["name"];
 $body["doc"]["alternateName"] = $_REQUEST["alternateName"];
 
@@ -44,8 +44,9 @@ do {
 } while ($i < 100);
 
 
-
+$body["doc"]["publisher"]["organization"]["name"] = trim($_REQUEST["publisher_organization_name"]);
 $body["doc"]["doi"] = trim($_REQUEST["doi"]);
+$body["doc"]["url"] = trim($_REQUEST["url"]);
 $body["doc"]["datePublished"] = trim($_REQUEST["datePublished"]);
 $body["doc"]["isPartOf"]["name"] = trim($_REQUEST["isPartOf_name"]);
 $body["doc"]["isPartOf"]["ISSN"] = trim($_REQUEST["isPartOf_ISSN"]);
@@ -54,13 +55,33 @@ $body["doc"]["isPartOf"]["issue"] = trim($_REQUEST["isPartOf_issue"]);
 $body["doc"]["isPartOf"]["pageStart"] = trim($_REQUEST["isPartOf_pageStart"]);
 $body["doc"]["isPartOf"]["pageEnd"] = trim($_REQUEST["isPartOf_pageEnd"]);
 
+$i_ISBN = 0;
+do {
+    $key =  'ISBN_'.$i_ISBN.'';
+    if (isset($_REQUEST[$key])) {
+        $body["doc"]["ISBN"][$i_ISBN] = trim($_REQUEST[$key]);        
+    }
+    $i_ISBN++;
+} while ($i_ISBN < 5);
+
+$i_about = 0;
+do {
+    $key =  'about_'.$i_about.'';
+    if (isset($_REQUEST[$key])) {
+        $body["doc"]["about"][$i_about] = trim($_REQUEST[$key]);        
+    }
+    $i_about++;
+} while ($i_about < 30);
+
+$body["doc"]["description"] = trim($_REQUEST["description"]);
+
 $body["doc_as_upsert"] = true;
 
-//print("<pre>".print_r($body, true)."</pre>");
+print("<pre>".print_r($body, true)."</pre>");
 
 $upsert = Elasticsearch::update($_REQUEST["rppbci_id"], $body);
-//print_r($upsert);
+print_r($upsert);
 
-header("Location: ../index.php");
+//header("Location: ../index.php");
 
 ?>

@@ -6,7 +6,13 @@
             "type": "string",
             "title": "ID",
             "hidden": true
-        },        
+        },
+        "type": {
+            "type": "select",
+            "title": "Tipo",
+            "enum": ["Artigo","Livro","Trabalho em evento"],
+            "required": true
+        },                   
         "name": {
             "type": "string",
             "title": "Título",
@@ -93,6 +99,7 @@
             }
         },        
         "isPartOf": {
+            "title": "Informações sobre a obra no todo",
             "type": "object",
             "properties": {
                 "name": {
@@ -124,15 +131,19 @@
         "country": {
             "title": "País de publicação",
             "type": "select",
-            "enum": ["bl","xxu","ag","-cn"],
+            "enum": ["Brasil", "Estados Unidos da América","Argentina","Canadá"],
             "required": true
         },
         "about": {
             "type": "array",
             "title": "Palavras-chave"
         },
-        "description": {
+        "ISBN": {
             "type": "array",
+            "title": "ISBN"
+        },        
+        "description": {
+            "type": "textarea",
             "title": "Resumo"
         },  
         "funder": {
