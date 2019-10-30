@@ -22,6 +22,9 @@
                 "format": "YYYY"
             },
             "manualEntry": false
+        },
+        "description":{
+            "type":"textarea"
         }
     }                       
 }

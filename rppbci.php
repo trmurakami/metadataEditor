@@ -82,6 +82,6 @@ print("<pre>".print_r($body, true)."</pre>");
 $upsert = Elasticsearch::update($_REQUEST["rppbci_id"], $body);
 print_r($upsert);
 
-//header("Location: ../index.php");
+header("Location: ../index.php");
 
 ?>
