@@ -198,6 +198,10 @@
                         "type": "string",
                         "title": "Ano de publicação"
                     },
+                    "publisher":{
+                        "type": "string",
+                        "title": "Editora"
+                    },                    
                     "doi":{
                         "type": "string",
                         "title": "DOI"
