@@ -7,6 +7,7 @@ require 'functions.php';
 
 if (file_exists('../inc/config.php')) {
     include '../inc/config.php';
+    $_REQUEST["formType"] = "rppbci";
 }
 
 /* Exibir erros */
@@ -15,12 +16,12 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 if (isset($_REQUEST["record"])) {
-    $_REQUEST["formType"] = "rppbci";
     $record = json_decode(urldecode($_REQUEST["record"]), true);
     $record["rppbci_id"] = $_REQUEST["rppbci_id"];
     $recordJson = json_encode($record);
-    //print("<pre>".print_r($record, true)."</pre>");
-    
+    //print("<pre>".print_r($record, true)."</pre>");    
+} else {
+    $record["rppbci_id"] = hash('sha256', (random_bytes(16)));
 }
 
 if (!isset($_REQUEST["formType"])) {

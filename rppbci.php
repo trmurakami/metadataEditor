@@ -28,9 +28,9 @@ do {
     $key_organization_external =  'author_'.$i.'_organization_external';
 
     if (isset($_REQUEST[$key])) {
-        $body["doc"]["author"][$i]["person"]["name"] = $_REQUEST[$key];
-        $body["doc"]["author"][$i]["person"]["identifier"]["value"] = $_REQUEST[$key_person_identifier_value];        
-        $body["doc"]["author"][$i]["organization"]["name"] = $_REQUEST[$key_organization_name];
+        $body["doc"]["author"][$i]["person"]["name"] = trim($_REQUEST[$key]);
+        $body["doc"]["author"][$i]["person"]["identifier"]["value"] = trim($_REQUEST[$key_person_identifier_value]);        
+        $body["doc"]["author"][$i]["organization"]["name"] = trim($_REQUEST[$key_organization_name]);
         
     }
     $i++;
@@ -38,14 +38,14 @@ do {
 
 
 
-$body["doc"]["doi"] = $_REQUEST["doi"];
-$body["doc"]["datePublished"] = $_REQUEST["datePublished"];
-$body["doc"]["isPartOf"]["name"] = $_REQUEST["isPartOf_name"];
-$body["doc"]["isPartOf"]["ISSN"] = $_REQUEST["isPartOf_ISSN"];
-$body["doc"]["isPartOf"]["volume"] = $_REQUEST["isPartOf_volume"];
-$body["doc"]["isPartOf"]["issue"] = $_REQUEST["isPartOf_issue"];
-$body["doc"]["isPartOf"]["pageStart"] = $_REQUEST["isPartOf_pageStart"];
-$body["doc"]["isPartOf"]["pageEnd"] = $_REQUEST["isPartOf_pageEnd"];
+$body["doc"]["doi"] = trim($_REQUEST["doi"]);
+$body["doc"]["datePublished"] = trim($_REQUEST["datePublished"]);
+$body["doc"]["isPartOf"]["name"] = trim($_REQUEST["isPartOf_name"]);
+$body["doc"]["isPartOf"]["ISSN"] = trim($_REQUEST["isPartOf_ISSN"]);
+$body["doc"]["isPartOf"]["volume"] = trim($_REQUEST["isPartOf_volume"]);
+$body["doc"]["isPartOf"]["issue"] = trim($_REQUEST["isPartOf_issue"]);
+$body["doc"]["isPartOf"]["pageStart"] = trim($_REQUEST["isPartOf_pageStart"]);
+$body["doc"]["isPartOf"]["pageEnd"] = trim($_REQUEST["isPartOf_pageEnd"]);
 
 $body["doc_as_upsert"] = true;
 
