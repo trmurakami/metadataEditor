@@ -80,7 +80,7 @@ if ($_REQUEST["crossrefDoi"]) {
     }
 }
 
-if (!isset($_REQUEST["crossrefDoi"]) || !isset($_REQUEST["record"])) {
+if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
     $record["name"] = "";
     $record["subtitle"] = "";
     $record["ignoreCharacters"] = 0;
