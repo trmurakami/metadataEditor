@@ -15,7 +15,14 @@ if (file_exists('../elasticfind/elasticfind.php')) {
     include '../elasticfind/elasticfind.php';
 }
 
-print("<pre>".print_r($_REQUEST, true)."</pre>");
+if (isset($_REQUEST["delete_id"])) {
+    $delete = Elasticsearch::delete($_REQUEST["delete_id"]);
+    header("Location: ../index.php");
+}
+
+//print("<pre>".print_r($_REQUEST, true)."</pre>");
+
+
 
 $body["doc"]["name"] = $_REQUEST["name"];
 $body["doc"]["alternateName"] = $_REQUEST["alternateName"];

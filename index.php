@@ -213,10 +213,25 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
 
 
 
-        <?php 
-            unset($record);
-            unset($recordJson); 
-        ?>
+
+
+<?php if (isset($record["rppbci_id"])) : ?>
+
+<form action="rppbci.php" method="post">
+  <div class="form-group">   
+    <input type="hidden" class="form-control" id="delete_id" name="delete_id" placeholder="delete_id" value="<?php echo $record["rppbci_id"]; ?>">
+  </div>
+  <button type="submit" class="btn btn-danger">Excluir registro</button>
+</form>
+    
+<?php endif ?>
+
+<?php 
+    unset($record);
+    unset($recordJson); 
+
+?>
+
 
     </body>
 </html>
