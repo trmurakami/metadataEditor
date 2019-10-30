@@ -1,7 +1,7 @@
 {
     "form": {
         "attributes": {
-            "action": "http://localhost/metadataEditor/export.php",
+            "action": "export.php",
             "method": "post"
         },
         "buttons": {

@@ -1,7 +1,7 @@
 {
     "form": {
         "attributes": {
-            "action": "http://localhost/metadataEditor/rppbci.php",
+            "action": "rppbci.php",
             "method": "post"
         },
         "buttons": {

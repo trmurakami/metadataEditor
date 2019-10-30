@@ -84,6 +84,7 @@ if (!isset($_REQUEST["crossrefDoi"]) || !isset($_REQUEST["record"])) {
     $record["name"] = "";
     $record["subtitle"] = "";
     $record["ignoreCharacters"] = 0;
+    $recordJson = json_encode($record);
 }
 
 
