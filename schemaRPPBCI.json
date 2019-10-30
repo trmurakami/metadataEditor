@@ -168,6 +168,46 @@
                     }                
                 }
             }                                 
+        },
+        "references":{
+            "title":"Referências",
+            "type": "array",
+            "items": {
+                "title": "Referências",
+                "type": "object",                        
+                "properties": {
+                    "type": {
+                        "type": "select",
+                        "title": "Tipo",
+                        "enum": ["Artigo","Livro","Trabalho em evento","Capítulo"],
+                        "required": true
+                    },                    
+                    "name":{
+                        "type": "string",
+                        "title": "Título"
+                    },
+                    "authors":{
+                        "type": "array",
+                        "title": "Autores"
+                    },
+                    "isPartOf_name":{
+                        "type": "string",
+                        "title": "Título da obra no todo"
+                    },
+                    "datePublished":{
+                        "type": "string",
+                        "title": "Ano de publicação"
+                    },
+                    "doi":{
+                        "type": "string",
+                        "title": "DOI"
+                    },
+                    "url":{
+                        "type": "string",
+                        "title": "URL"
+                    }                                                                                                               
+                }
+            }
         }       
     }
 }
