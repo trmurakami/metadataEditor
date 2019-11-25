@@ -16,9 +16,14 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 if (isset($_REQUEST["record"])) {
-    $_REQUEST["formType"] = "rppbci";
+    if (isset($_REQUEST["rppbci_id"])) {
+        $_REQUEST["formType"] = "rppbci";
+        $record["rppbci_id"] = $_REQUEST["rppbci_id"];
+    } elseif (isset($_REQUEST["coletaprod_id"])) {
+        $_REQUEST["formType"] = "produsp";
+        $record["coletaprod_id"] = $_REQUEST["coletaprod_id"];
+    }    
     $record = json_decode(urldecode($_REQUEST["record"]), true);
-    $record["rppbci_id"] = $_REQUEST["rppbci_id"];
     $recordJson = json_encode($record);
     //print("<pre>".print_r($record, true)."</pre>");    
 } else {
@@ -128,6 +133,9 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
         <title>Editor de registros</title>
     </head>
     <body>
+
+
+
         <div class="container">
             <h1>Editor</h1>
 
@@ -221,6 +229,17 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
 <form action="rppbci.php" method="post">
   <div class="form-group">   
     <input type="hidden" class="form-control" id="delete_id" name="delete_id" placeholder="delete_id" value="<?php echo $record["rppbci_id"]; ?>">
+  </div>
+  <button type="submit" class="btn btn-danger">Excluir registro</button>
+</form>
+    
+<?php endif ?>
+
+<?php if (isset($record["coletaprod_id"])) : ?>
+
+<form action="coletaprod.php" method="post">
+  <div class="form-group">   
+    <input type="hidden" class="form-control" id="delete_id" name="delete_id" placeholder="delete_id" value="<?php echo $record["coletaprod_id"]; ?>">
   </div>
   <button type="submit" class="btn btn-danger">Excluir registro</button>
 </form>
