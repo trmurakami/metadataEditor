@@ -24,6 +24,11 @@ if (isset($_REQUEST["record"])) {
         $record["coletaprod_id"] = $_REQUEST["coletaprod_id"];
     }    
     $record = json_decode(urldecode($_REQUEST["record"]), true);
+    if (strpos($record["name"], ":")) {
+        $titleExploded = explode(":", $record["name"]);
+        $record["name"] = trim($titleExploded[0]);
+        $record["subtitle"] = trim($titleExploded[1]);
+    }
     $recordJson = json_encode($record);
     //print("<pre>".print_r($record, true)."</pre>");    
 } else {
