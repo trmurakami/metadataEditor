@@ -28,7 +28,7 @@ class Exporters
             $record[] = '000000001 1001  L $$a'.$r["author_0_person_name"].'$$d$$0'.((isset($r["author_0_person_identifier_value"])? $r["author_0_person_identifier_value"] : '')).'$$1$$4$$5'.((isset($r["author_0_organization_external"])? $r["author_0_organization_external"] : '')).'$$7$$8'.((isset($r["author_0_organization_name"])? $r["author_0_organization_name"] : '')).'$$9';
         }         
         
-        $record[] = '000000001 2451'.$r["ignoreCharacters"].' L $$a'.$r["name"].'';                                            
+        $record[] = '000000001 2451'.$r["ignoreCharacters"].' L $$a'.$r["name"].'$b'.((isset($r["subtitle"])? $r["subtitle"] : '')).'';                                            
         if (isset($r["trabalhoEmEventos"])) {  
             $record[] = '000000001 260   L $$a'.((isset($r["trabalhoEmEventos"]["cidadeDaEditora"]) && $r["trabalhoEmEventos"]["cidadeDaEditora"])? $r["trabalhoEmEventos"]["cidadeDaEditora"] : '').'$$b'.((isset($r["trabalhoEmEventos"]["nomeDaEditora"]) && $r["trabalhoEmEventos"]["nomeDaEditora"])? $r["trabalhoEmEventos"]["nomeDaEditora"] : '').'$$c'.$r["datePublished"].'';
         } else {
@@ -37,7 +37,7 @@ class Exporters
         $record[] = '000000001 300   L $$ap. '.((isset($r["isPartOf_pageStart"])?$r["isPartOf_pageStart"]:"")).'-'.((isset($r["isPartOf_pageEnd"])?$r["isPartOf_pageEnd"]:"")).'';
 
         if (isset($r['doi'])) {
-            $record[] = '000000001 500   L $$aDisponível em: https://doi.org/'.$r["doi"].'. Acesso em: '.date('d M Y').'';
+            $record[] = '000000001 500   L $$aDisponível em: https://doi.org/'.$r["doi"].' . Acesso em: '.date('d M Y').'';
         } else {
             $record[] = '000000001 500   L $$a';
         }
