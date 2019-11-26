@@ -13,7 +13,7 @@
             "required": true,
             "minimum": 0,
             "maximum": 9
-        },        
+        },
         "subtitle": {
             "type": "string",
             "title": "Subtítulo",
@@ -25,63 +25,69 @@
             "items": {
                 "title": "Autor",
                 "type": "object",
-                "properties":{                    
-                    "person":{
-                        "type":"object",
-                        "properties":{
-                            "name":{
+                "properties": {
+                    "person": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
                                 "type": "string",
                                 "title": "Nome do autor"
                             },
                             "identifier": {
                                 "title": "Identificador",
-                                "type":"object",
-                                "properties":{
+                                "type": "object",
+                                "properties": {
                                     "institution": {
                                         "type": "string",
                                         "title": "Entidade de atribuição",
-                                        "enum": ["ORCID", "Lattes", "LC", "VIAF"]
+                                        "enum": [
+                                            "ORCID",
+                                            "Lattes",
+                                            "LC",
+                                            "VIAF"
+                                        ]
                                     },
-                                    "value":{
+                                    "value": {
                                         "title": "Identificador",
                                         "type": "string"
                                     }
                                 }
                             }
-
                         }
                     },
-                    "organization":{
-                        "type":"object",
-                        "properties":{
-                            "name":{
+                    "organization": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
                                 "type": "string",
                                 "title": "Instituição"
                             },
-                            "external":{
+                            "external": {
                                 "type": "select",
                                 "title": "É um autor externo?",
-                                "enum": ["(*)"]
-                            }                            
+                                "enum": [
+                                    "(*)"
+                                ]
+                            }
                         }
-                    }                    
+                    }
                 }
-            }                                 
+            }
         },
         "publisher": {
             "title": "Imprenta",
             "type": "object",
-            "properties": {                 
-                "organization":{
-                    "type":"object",
-                    "properties":{
-                        "name":{
+            "properties": {
+                "organization": {
+                    "type": "object",
+                    "properties": {
+                        "name": {
                             "type": "string",
                             "title": "Editora"
                         }
                     }
-                } 
-            }                                 
+                }
+            }
         },
         "doi": {
             "type": "string",
@@ -92,14 +98,14 @@
         "url": {
             "type": "string",
             "title": "URL"
-        },        
+        },
         "datePublished": {
             "type": "date",
             "title": "Ano da publicação",
             "picker": {
                 "format": "YYYY"
             }
-        },        
+        },
         "isPartOf": {
             "type": "object",
             "properties": {
@@ -107,32 +113,37 @@
                     "type": "string",
                     "title": "Título do periódico"
                 },
-                "ISSN":{
+                "ISSN": {
                     "type": "string",
                     "title": "ISSN"
                 },
-                "volume":{
+                "volume": {
                     "type": "string",
                     "title": "Volume"
                 },
-                "issue":{
+                "issue": {
                     "type": "string",
                     "title": "Fascículo"
                 },
-                "pageStart":{
+                "pageStart": {
                     "type": "string",
                     "title": "Página inicial"
                 },
-                "pageEnd":{
+                "pageEnd": {
                     "type": "string",
                     "title": "Página final"
-                }                                                  
+                }
             }
         },
         "country": {
             "title": "País de publicação",
             "type": "select",
-            "enum": ["bl","xxu","ag","-cn"],
+            "enum": [
+                "bl",
+                "xxu",
+                "ag",
+                "-cn"
+            ],
             "required": true
         },
         "about": {
@@ -149,28 +160,32 @@
             "items": {
                 "title": "Fomento",
                 "type": "object",
-                "properties":{                    
-                    "organization":{
-                        "type":"object",
-                        "properties":{
-                            "name":{
+                "properties": {
+                    "organization": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
                                 "type": "string",
                                 "title": "Agência de fomento"
                             },
-                            "projectNumber":{
+                            "projectNumber": {
                                 "type": "string",
                                 "title": "Número do fomento"
                             }
                         }
-                    }                
+                    }
                 }
-            }                                 
+            }
         },
         "format": {
             "title": "Formato de exportação",
             "type": "select",
-            "enum": ["alephseq","ris","bibtex"],
+            "enum": [
+                "alephseq",
+                "ris",
+                "bibtex"
+            ],
             "required": true
-        }              
+        }
     }
 }

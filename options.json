@@ -7,18 +7,26 @@
         "buttons": {
             "submit": {
                 "title": "Exportar"
-            },                               
+            },
             "reset": {}
         }
     },
     "fields": {
         "helper": "",
+        "author": {
+            "toolbarSticky": true
+        },
         "name": {
             "size": 1000
         },
         "country": {
             "label": "País de publicação",
-            "optionLabels": ["Brasil", "Estados Unidos da América","Argentina","Canadá"],
+            "optionLabels": [
+                "Brasil",
+                "Estados Unidos da América",
+                "Argentina",
+                "Canadá"
+            ],
             "sort": false
         },
         "datePublished": {
@@ -29,10 +37,10 @@
             "manualEntry": false
         },
         "description": {
-            "type":"array",
+            "type": "array",
             "items": {
                 "type": "textarea"
             }
         }
-    }                       
+    }
 }
