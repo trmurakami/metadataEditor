@@ -107,7 +107,7 @@
             "type": "string",
             "title": "Resumo"
         },
-        "Itens": {
+        "itens": {
             "title": "Exemplares",
             "type": "array",
             "items": {
