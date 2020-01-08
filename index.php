@@ -7,7 +7,12 @@ require 'functions.php';
 
 if (file_exists('../inc/config.php')) {
     include '../inc/config.php';
-    $_REQUEST["formType"] = "rppbci";
+    if (isset($formType)) {
+        $_REQUEST["formType"] = $formType;
+    } else {
+        $_REQUEST["formType"] = "rppbci";
+    }
+    
 }
 
 /* Exibir erros */
@@ -213,6 +218,21 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
                     });
 
                     </script>
+
+                <?php elseif($_REQUEST["formType"] == "biblionet") : ?>
+
+                    <div id="form"></div>
+                    <script type="text/javascript">
+                    $("#form").alpaca({
+                        "data": <?php echo $recordJson; ?>,
+                        "optionsSource": "./optionsBiblionet.json",
+                        "schemaSource": "./schemaBiblionet.json",
+                        "view": {
+                            "locale": "pt_BR"
+                        }
+                    });
+
+                    </script>                    
 
                 <?php endif; ?> 
 
