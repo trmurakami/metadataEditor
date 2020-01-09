@@ -70,13 +70,14 @@ $body["doc"]["description"] = trim($_REQUEST["description"]);
 
 $i_itens = 0;
 do {
+
     $key_digitalizado =  'itens_'.$i_itens.'_digitalItem_digitalizado';
     $key_url =  'itens_'.$i_itens.'_digitalItem_url';
     $key_location =  'itens_'.$i_itens.'_digitalItem_location';
     $key_organization =  'itens_'.$i_itens.'_digitalItem_organization';
     $key_rights =  'itens_'.$i_itens.'_digitalItem_rights';
 
-    if (isset($_REQUEST[$key_type])) {
+    if (isset($_REQUEST[$key_digitalizado])) {
         $body["doc"]["itens"][$i_itens]["digitalizado"] = trim($_REQUEST[$key_digitalizado]);
         $body["doc"]["itens"][$i_itens]["url"] = trim($_REQUEST[$key_url]);
         $body["doc"]["itens"][$i_itens]["location"] = trim($_REQUEST[$key_location]);
