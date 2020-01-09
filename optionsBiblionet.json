@@ -1,12 +1,12 @@
 {
     "form": {
         "attributes": {
-            "action": "rppbci.php",
+            "action": "biblionet.php",
             "method": "post"
         },
         "buttons": {
             "submit": {
-                "title": "Atualizar registro"
+                "title": "Criar ou atualizar registro"
             },
             "reset": {}
         }
