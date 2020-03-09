@@ -25,7 +25,7 @@ if (isset($_REQUEST["record"])) {
         $_REQUEST["formType"] = "rppbci";
         $record["rppbci_id"] = $_REQUEST["rppbci_id"];
     } elseif (isset($_REQUEST["coletaprod_id"])) {
-        $_REQUEST["formType"] = "produsp";
+        $_REQUEST["formType"] = "coletaprod";
         $record["coletaprod_id"] = $_REQUEST["coletaprod_id"];
     }    
     $record = json_decode(urldecode($_REQUEST["record"]), true);
@@ -41,7 +41,7 @@ if (isset($_REQUEST["record"])) {
 }
 
 if (!isset($_REQUEST["formType"])) {
-    $_REQUEST["formType"] = "produsp";
+    $_REQUEST["formType"] = "coletaprod";
 }
 
 if ($_REQUEST["crossrefDoi"]) {
@@ -149,7 +149,7 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
         <div class="container">
             <h1>Editor</h1>
 
-            <?php if ($_REQUEST["formType"] == "produsp"):  ?>
+            <?php if ($_REQUEST["formType"] == "coletaprod"):  ?>
 
                 <?php if (!$_REQUEST["crossrefDoi"]):  ?>
 
@@ -195,8 +195,8 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
                 <script type="text/javascript">
                 $("#form").alpaca({
                     "data": <?php echo $recordJson; ?>,
-                    "optionsSource": "./options.json",
-                    "schemaSource": "./schema.json",
+                    "optionsSource": "./optionsColetaprod.json",
+                    "schemaSource": "./schemaColetaprod.json",
                     "view": {
                         "locale": "pt_BR"
                     }
