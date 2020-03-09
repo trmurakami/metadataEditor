@@ -79,7 +79,7 @@ print("<pre>".print_r($body, true)."</pre>");
 
 print_r($_REQUEST["coletaprod_id"]);
 
-$upsert = Elasticsearch::update($_REQUEST["coletaprod_id"], $body, "coletaprod");
+$upsert = Elasticsearch::update($_REQUEST["coletaprod_id"], $body);
 print_r($upsert);
 
 //header("Location: ../index.php");
