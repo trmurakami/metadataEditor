@@ -21,14 +21,15 @@ ini_set('display_startup_errors', 0);
 error_reporting(0);
 
 if (isset($_REQUEST["record"])) {
+    $record = json_decode(urldecode($_REQUEST["record"]), true);
     if (isset($_REQUEST["rppbci_id"])) {
         $_REQUEST["formType"] = "rppbci";
         $record["rppbci_id"] = $_REQUEST["rppbci_id"];
-    } elseif (isset($_REQUEST["coletaprod_id"])) {
+    } elseif (isset($_REQUEST["coletaprod_id"])) {        
         $_REQUEST["formType"] = "coletaprod";
         $record["coletaprod_id"] = $_REQUEST["coletaprod_id"];
-    }    
-    $record = json_decode(urldecode($_REQUEST["record"]), true);
+        print_r($record);
+    }
     if (strpos($record["name"], ":")) {
         $titleExploded = explode(":", $record["name"]);
         $record["name"] = trim($titleExploded[0]);
