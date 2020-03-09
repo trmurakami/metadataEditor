@@ -28,7 +28,6 @@ if (isset($_REQUEST["record"])) {
     } elseif (isset($_REQUEST["coletaprod_id"])) {        
         $_REQUEST["formType"] = "coletaprod";
         $record["coletaprod_id"] = $_REQUEST["coletaprod_id"];
-        print_r($record);
     }
     if (strpos($record["name"], ":")) {
         $titleExploded = explode(":", $record["name"]);
