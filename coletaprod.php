@@ -113,7 +113,7 @@ $body["doc_as_upsert"] = true;
 
 print("<pre>".print_r($body, true)."</pre>");
 
-$upsert = Elasticsearch::update($_REQUEST["rppbci_id"], $body);
+$upsert = Elasticsearch::update($_REQUEST["coletaprod_id"], $body);
 print_r($upsert);
 
 //header("Location: ../index.php");
