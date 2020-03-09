@@ -77,6 +77,8 @@ $body["doc_as_upsert"] = true;
 
 print("<pre>".print_r($body, true)."</pre>");
 
+print_r($_REQUEST["coletaprod_id"]);
+
 $upsert = Elasticsearch::update($_REQUEST["coletaprod_id"], $body, "coletaprod");
 print_r($upsert);
 
