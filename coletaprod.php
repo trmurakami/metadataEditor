@@ -22,8 +22,6 @@ if (isset($_REQUEST["delete_id"])) {
 
 print("<pre>".print_r($_REQUEST, true)."</pre>");
 
-
-$body["doc"]["type"] = $_REQUEST["type"];
 $body["doc"]["name"] = $_REQUEST["name"];
 $body["doc"]["alternateName"] = $_REQUEST["alternateName"];
 
@@ -74,40 +72,6 @@ do {
 } while ($i_about < 30);
 
 $body["doc"]["description"] = trim($_REQUEST["description"]);
-
-
-$i_ref = 0;
-do {
-    $key_type =  'references_'.$i_ref.'_type';
-    $key_name =  'references_'.$i_ref.'_name';
-    $key_isPartOf_name =  'references_'.$i_ref.'_isPartOf_name';
-    $key_datePublished =  'references_'.$i_ref.'_datePublished';
-    $key_publisher =  'references_'.$i_ref.'_publisher';
-    $key_doi =  'references_'.$i_ref.'_doi';
-    $key_url =  'references_'.$i_ref.'_url';
-
-    $i_aut = 0;
-    do {
-        $key_aut =  'references_'.$i_ref.'_authors_'.$i_aut.'';
-        if (isset($_REQUEST[$key_aut])) {
-            $body["doc"]["references"][$i_ref]["authors"][$i_aut] = trim($_REQUEST[$key_aut]);        
-        }
-        $i_aut++;
-    } while ($i_aut < 30);
-
-    if (isset($_REQUEST[$key_type])) {
-        $body["doc"]["references"][$i_ref]["type"] = trim($_REQUEST[$key_type]);
-        $body["doc"]["references"][$i_ref]["name"] = trim($_REQUEST[$key_name]);
-        $body["doc"]["references"][$i_ref]["isPartOf_name"] = trim($_REQUEST[$key_isPartOf_name]);
-        $body["doc"]["references"][$i_ref]["datePublished"] = trim($_REQUEST[$key_datePublished]);
-        $body["doc"]["references"][$i_ref]["publisher"] = trim($_REQUEST[$key_publisher]);
-        $body["doc"]["references"][$i_ref]["doi"] = trim($_REQUEST[$key_doi]);
-        $body["doc"]["references"][$i_ref]["url"] = trim($_REQUEST[$key_url]);    
-    }
-    $i_ref++;
-} while ($i_ref < 1000);
-
-
 
 $body["doc_as_upsert"] = true;
 
