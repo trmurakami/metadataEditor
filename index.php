@@ -25,7 +25,7 @@ if (isset($_REQUEST["record"])) {
     if (isset($_REQUEST["rppbci_id"])) {
         $_REQUEST["formType"] = "rppbci";
         $record["rppbci_id"] = $_REQUEST["rppbci_id"];
-    } elseif (isset($_REQUEST["coletaprod_id"])) {        
+    } elseif (isset($_REQUEST["coletaprod_id"])) {
         $_REQUEST["formType"] = "coletaprod";
         $record["coletaprod_id"] = $_REQUEST["coletaprod_id"];
     }
@@ -232,7 +232,7 @@ if (!isset($_REQUEST["crossrefDoi"]) && !isset($_REQUEST["record"])) {
                         }
                     });
 
-                    </script>                    
+                    </script>
 
                 <?php endif; ?> 
 

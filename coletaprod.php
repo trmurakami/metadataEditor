@@ -31,12 +31,13 @@ do {
     $key_person_identifier_value =  'author_'.$i.'_person_identifier_value';
     $key_organization_name =  'author_'.$i.'_organization_name';
     $key_organization_external =  'author_'.$i.'_organization_external';
+    $key_potentialAction =  'author_'.$i.'_potentialAction';
 
     if (isset($_REQUEST[$key])) {
         $body["doc"]["author"][$i]["person"]["name"] = trim($_REQUEST[$key]);
-        $body["doc"]["author"][$i]["person"]["identifier"]["value"] = trim($_REQUEST[$key_person_identifier_value]);        
+        $body["doc"]["author"][$i]["person"]["identifier"]["value"] = trim($_REQUEST[$key_person_identifier_value]);
         $body["doc"]["author"][$i]["organization"]["name"] = trim($_REQUEST[$key_organization_name]);
-        
+        $body["doc"]["author"][$i]["potentialAction"] = trim($_REQUEST[$key_potentialAction]);
     }
     $i++;
 } while ($i < 100);

@@ -6,7 +6,7 @@
         },
         "buttons": {
             "submit": {
-                "title": "Atualizar registro no Coletaprod"
+                "title": "Atualizar registro"
             },
             "reset": {}
         }
